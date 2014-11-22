@@ -75,7 +75,7 @@ boxNine.onclick = function() {
 		boxNine.innerHTML = "X";
 	}
 }
-  // Create win condition: if 3 boxes have the same mark ...
+  // Create win conditions
   var b1 = boxOne.innerHTML,
   		b2 = boxTwo.innerHTML,
   		b3 = boxThree.innerHTML,
@@ -86,17 +86,19 @@ boxNine.onclick = function() {
   		b8 = boxEight.innerHTML,
   		b9 = boxNine.innerHTML;
 
-  var board = [
-	[b1, b2, b3],
-	[b4, b5, b6],
-	[b7, b8, b9]
-	];
+  /* Another way to create and check solutions maybe:
+    var board = [
+  	[b1, b2, b3],
+  	[b4, b5, b6],
+  	[b7, b8, b9]
+  	];
+  */
 
-  var endturn = document.querySelector('.endturn');
+  // Check the current innerHTML of the grid for a win.
+
   function endturn() {
   	document.querySelector('.endturn');
-  	var currentBoard = board;
-
+  
   	if (b1 === b2 && b2 === b3) {
   	  console.log(b1 + " wins!");
   	}
