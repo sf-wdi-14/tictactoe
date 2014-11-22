@@ -1,0 +1,39 @@
+body {
+	background: #333;
+	color: #ccc;
+	margin: auto;
+}
+
+div {
+
+}
+
+h1 {
+	text-align: center;
+	color: #99ce05;
+}
+
+h2 {
+
+}
+
+h3 {
+	text-align: center;
+}
+
+.row {
+	width: 300px;
+	margin: auto;
+}
+
+.box {
+	float: left;
+	background: white;
+	width: 60px;
+	height: 60px;
+	margin: 3px;
+	padding: 5px;
+	font-size: 60px;
+	text-align: center;
+	color: black;
+}
