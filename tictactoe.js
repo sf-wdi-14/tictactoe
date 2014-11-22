@@ -86,14 +86,20 @@ boxNine.onclick = function() {
   		b8 = boxEight.innerHTML,
   		b9 = boxNine.innerHTML;
 
-  var boards = [
+  var board = [
 	[b1, b2, b3],
 	[b4, b5, b6],
 	[b7, b8, b9]
 	];
 
+  var endturn = document.querySelector('.endturn');
+  function endturn() {
+  	document.querySelector('.endturn');
+  	var currentBoard = board;
 
-
-
+  	if (b1 === b2 && b2 === b3) {
+  	  console.log(b1 + " wins!");
+  	}
+  }
 
 }
