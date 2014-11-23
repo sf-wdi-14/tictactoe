@@ -18,7 +18,7 @@ window.onload = function() {
   	} else {
   		boxOne.innerHTML = "X";
   	}
-  	board[0][0] = b1; 			// Just testing input and output!
+  				// Just testing input and output!
   }
   
   boxTwo.onclick = function() {
@@ -79,31 +79,48 @@ boxNine.onclick = function() {
 }
 
   // Check the current innerHTML of the grid for a win.
-  var b1 = boxOne.innerHTML,
-  	  b2 = boxTwo.innerHTML,
-  	  b3 = boxThree.innerHTML,
-  	  b4 = boxFour.innerHTML,
-  	  b5 = boxFive.innerHTML,
-  	  b6 = boxSix.innerHTML,
-  	  b7 = boxSeven.innerHTML,
-  	  b8 = boxEight.innerHTML,
-  	  b9 = boxNine.innerHTML;
 
-  var board = [
-  	[b1, b2, b3],
-  	[b4, b5, b6],
-  	[b7, b8, b9]
-  	];
-
-  var endButton = document.getElementById('endturn'),
-  	  saveBoard;
-  
+  var endButton = document.getElementById('endturn');  
   endButton.onclick = function() {
-  	console.log(board);
+    var b1 = boxOne.innerHTML,
+    	b2 = boxTwo.innerHTML,
+    	b3 = boxThree.innerHTML,
+    	b4 = boxFour.innerHTML,
+    	b5 = boxFive.innerHTML,
+    	b6 = boxSix.innerHTML,
+    	b7 = boxSeven.innerHTML,
+    	b8 = boxEight.innerHTML,
+    	b9 = boxNine.innerHTML;
+  
+    var board = [
+    	[b1, b2, b3],
+    	[b4, b5, b6],
+    	[b7, b8, b9]
+    	];
+
+    if (b1 == b2 && b2 == b3) {
+    	console.log(b1 + " wins!");
+    } else if (b1 == b4 && b4 == b7) {
+    	console.log(b1 + " wins!");
+    } else if (b1 == b5 && b5 == b9) {
+    	console.log(b1 + " wins!");
+    } else if (b4 == b5 && b5 == b6) {
+    	console.log(b4 + " wins!");
+    } else if (b7 == b8 && b8 == b9) {
+    	console.log(b7 + " wins!");
+    } else if (b7 == b5 && b5 == b3) {
+    	console.log(b7 + " wins!");
+    } else if (b2 == b5 && b5 == b8) {
+    	console.log(b2 + " wins!");
+    } else if (b3 == b6 && b6 == b9) {
+    	console.log(b3 + " wins!");
+    }
+
+    	console.log(board);
   }
   
   var clearButton = document.getElementById('clear');
-  var allBoxes = document.querySelector(".box");
+  var allBoxes = document.querySelectorAll(".box");
 
   clearButton.onclick = function() {
   	allBoxes.innerHTML = "";
