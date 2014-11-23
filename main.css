@@ -1,5 +1,5 @@
 body {
-	background: #333;
+	background: linear-gradient(#333333,#111111);
 	color: #ccc;
 	margin: auto;
 }
@@ -9,31 +9,67 @@ div {
 }
 
 h1 {
+	font-size: 75px;
+	font-family: 'Sigmar One', cursive;
 	text-align: center;
 	color: #99ce05;
+	text-shadow: 5px 5px #000;
 }
 
 h2 {
-
+	text-align: center;
+	color: #ffdb00;
+	font-size: 50px;
 }
 
 h3 {
 	text-align: center;
+	color: #ffdb00;
+}
+
+.content {
+	position: relative;
 }
 
 .row {
 	width: 300px;
+	height: 90px;
 	margin: auto;
 }
 
 .box {
 	float: left;
-	background: white;
-	width: 60px;
-	height: 60px;
+	background: #666;
+	width: 90px;
+	height: 90px;
 	margin: 3px;
-	padding: 5px;
-	font-size: 60px;
+	font-size: 80px;
+	font-family: Verdana;
+	font-weight: bold;
 	text-align: center;
 	color: black;
+}
+
+.dash {
+	width: 325px;
+	margin: auto;
+	padding: 30px;
+
+}
+
+button {
+	background: linear-gradient(#ffcc02,#ff9c00);
+	border: 2px solid #666;
+	color: white;
+	font-size: 30px;
+	font-family: 'Sigmar One', cursive;
+	width: 150px;
+	height: 50px;
+}
+
+#endturn {
+
+}
+#clear {
+
 }

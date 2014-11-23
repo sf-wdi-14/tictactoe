@@ -9,6 +9,7 @@ window.onload = function() {
   var boxSeven = document.querySelector("#b7");
   var boxEight = document.querySelector("#b8");
   var boxNine = document.querySelector("#b9");
+  var square;
 
   var clearButton = document.getElementById('clear');
   var allBoxes = document.querySelectorAll(".box");
@@ -106,6 +107,45 @@ window.onload = function() {
 
   // Check the current innerHTML of the grid for a win.
 
+  var b1 = boxOne.innerHTML,
+        b2 = boxTwo.innerHTML,
+        b3 = boxThree.innerHTML,
+        b4 = boxFour.innerHTML,
+        b5 = boxFive.innerHTML,
+        b6 = boxSix.innerHTML,
+        b7 = boxSeven.innerHTML,
+        b8 = boxEight.innerHTML,
+        b9 = boxNine.innerHTML;
+  
+    var board = [
+      b1, b2, b3,
+      b4, b5, b6,
+      b7, b8, b9
+      ];
+
+  if (b1 === "X" && b2 === "X" && b3 === "X" || 
+      b1 === "O" && b2 === "O" && b3 === "O" ||
+      b1 === "X" && b4 === "X" && b7 === "X" || 
+      b1 === "O" && b4 === "O" && b7 === "O" ||
+      b1 === "X" && b5 === "X" && b9 === "X" ||
+      b1 === "O" && b5 === "O" && b9 === "O" ||
+      b1 === "X" && b4 === "X" && b7 === "X" ||
+      b1 === "O" && b4 === "O" && b7 === "O" ||
+      b4 === "X" && b5 === "X" && b6 === "X" ||
+      b4 === "O" && b5 === "O" && b6 === "O" ||
+      b7 === "X" && b8 === "X" && b9 === "X" ||
+      b7 === "O" && b8 === "O" && b9 === "O" ||
+      b7 === "X" && b5 === "X" && b3 === "X" ||
+      b7 === "O" && b5 === "O" && b3 === "O" ||
+      b2 === "X" && b5 === "X" && b8 === "X" ||
+      b2 === "O" && b5 === "O" && b8 === "O" ||
+      b3 === "X" && b6 === "X" && b9 === "X" ||
+      b3 === "O" && b6 === "O" && b9 === "O" ) {
+      console.log("We have a winner!");
+    }
+
+    console.log(board);
+  /*
   var endButton = document.getElementById('endturn');  
   endButton.onclick = function() {
     var b1 = boxOne.innerHTML,
@@ -124,8 +164,8 @@ window.onload = function() {
     	b7, b8, b9
     	];
 
-    
- 
+
+   
     if (b1 === "X" && b2 === "X" && b3 === "X" || 
     	b1 === "O" && b2 === "O" && b3 === "O" ||
     	b1 === "X" && b4 === "X" && b7 === "X" || 
@@ -149,6 +189,7 @@ window.onload = function() {
 
     console.log(board);
   }
+  */
 
   clearButton.onclick = function() {
   	for (var i = 0; i < allBoxes.length; i++) {
