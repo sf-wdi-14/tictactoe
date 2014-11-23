@@ -9,7 +9,8 @@ window.onload = function() {
   var boxSeven = document.querySelector("#b7");
   var boxEight = document.querySelector("#b8");
   var boxNine = document.querySelector("#b9");
-  
+
+
   // Create an event when a box is clicked
   boxOne.onclick = function() {
   	if (boxOne.innerHTML === "X") {
@@ -17,6 +18,7 @@ window.onload = function() {
   	} else {
   		boxOne.innerHTML = "X";
   	}
+  	board[0][0] = b1; 			// Just testing input and output!
   }
   
   boxTwo.onclick = function() {
@@ -75,33 +77,35 @@ boxNine.onclick = function() {
 		boxNine.innerHTML = "X";
 	}
 }
-  // Create win conditions
-  var b1 = boxOne.innerHTML,
-  		b2 = boxTwo.innerHTML,
-  		b3 = boxThree.innerHTML,
-  		b4 = boxFour.innerHTML,
-  		b5 = boxFive.innerHTML,
-  		b6 = boxSix.innerHTML,
-  		b7 = boxSeven.innerHTML,
-  		b8 = boxEight.innerHTML,
-  		b9 = boxNine.innerHTML;
 
-  /* Another way to create and check solutions maybe:
-    var board = [
+  // Check the current innerHTML of the grid for a win.
+  var b1 = boxOne.innerHTML,
+  	  b2 = boxTwo.innerHTML,
+  	  b3 = boxThree.innerHTML,
+  	  b4 = boxFour.innerHTML,
+  	  b5 = boxFive.innerHTML,
+  	  b6 = boxSix.innerHTML,
+  	  b7 = boxSeven.innerHTML,
+  	  b8 = boxEight.innerHTML,
+  	  b9 = boxNine.innerHTML;
+
+  var board = [
   	[b1, b2, b3],
   	[b4, b5, b6],
   	[b7, b8, b9]
   	];
-  */
 
-  // Check the current innerHTML of the grid for a win.
-
-  function endturn() {
-  	document.querySelector('.endturn');
+  var endButton = document.getElementById('endturn'),
+  	  saveBoard;
   
-  	if (b1 === b2 && b2 === b3) {
-  	  console.log(b1 + " wins!");
-  	}
+  endButton.onclick = function() {
+  	console.log(board);
   }
+  
+  var clearButton = document.getElementById('clear');
+  var allBoxes = document.querySelector(".box");
 
+  clearButton.onclick = function() {
+  	allBoxes.innerHTML = "";
+  }
 }
