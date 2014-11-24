@@ -14,6 +14,15 @@ window.onload = function() {
   var clearButton = document.getElementById('clear');
   var allBoxes = document.querySelectorAll(".box"); 
   var results = document.querySelector(".result");
+  var fro = "<img src=\"tictacfro2.png\">";
+  
+  var youMad = new Audio();
+  youMad.src = "youmad.mp3";
+  youMad.load();
+
+  var applause = new Audio();
+  applause.src = "applause.mp3";
+  applause.load();
 
   // Create an event when a box is clicked
 
@@ -25,13 +34,12 @@ window.onload = function() {
 
   // Add some competition
   		var ai = Math.floor((Math.random() * allBoxes.length) );
-  		console.log(ai);
-  		if (allBoxes[ai] !== "") {
-  		  allBoxes[ai].innerHTML = "";
+  		console.log(ai);							// Pattern of errors at certain indices?
+  		if (allBoxes[ai] !== "X") {
+  		  allBoxes[ai].innerHTML = "<img src=\"tictacfro2.png\">";
   		  allBoxes[ai].style.color = "#ffdb00";
   		} else {
-  			allBoxes[ai].innerHTML = 'O';
-  		  allBoxes[ai].style.color = "#ffdb00";
+  			allBoxes[ai].innerHTML = "O"; // When is "else" executed?
   		}
 
   		var b1 = boxOne.innerHTML,
@@ -50,8 +58,24 @@ window.onload = function() {
         b7, b8, b9
         ];
   // Keep score	
-      var scoreX = document.querySelector("scorex");
-      var scoreO = document.querySelector("scoreO");
+      var scoreX = 0, 
+      		scoreO = 0;
+      function addScoreX() {
+      	scoreX += 1000;
+      	document.getElementById("scorex").innerHTML = scoreX;
+
+      	scoreO -= 500;
+      	document.getElementById("scoreo").innerHTML = scoreO;
+      }
+
+      function addScoreO() {
+      	scoreO += 1000;
+      	document.getElementById("scorex").innerHTML = scoreX;
+
+      	scoreX -= 500;
+      	document.getElementById("scoreo").innerHTML = scoreO;
+      }
+
   // Check for win conditions
       if (b1 === "X" && b2 === "X" && b3 === "X" || 
         b1 === "X" && b4 === "X" && b7 === "X" || 
@@ -62,8 +86,10 @@ window.onload = function() {
         b7 === "X" && b5 === "X" && b3 === "X" ||
         b2 === "X" && b5 === "X" && b8 === "X" ||
         b3 === "X" && b6 === "X" && b9 === "X" ) {
-        console.log("We have a winner!");
-        results.innerHTML = "WE HAVE A WINNER!";      
+        results.innerHTML = "WE HAVE A WINNER!";
+      	new Audio('applause.mp3').play();
+        addScoreX();
+
       } else if (b1 === "O" && b2 === "O" && b3 === "O" ||
 	   	  b1 === "O" && b4 === "O" && b7 === "O" ||
 	   	  b1 === "O" && b5 === "O" && b9 === "O" ||
@@ -73,10 +99,22 @@ window.onload = function() {
 	   	  b7 === "O" && b5 === "O" && b3 === "O" ||
 	   	  b2 === "O" && b5 === "O" && b8 === "O" ||
 	   	  b3 === "O" && b6 === "O" && b9 === "O" ) {
-      	console.log("You lose!");
       	results.innerHTML = "YOU LOSE!";
+      	addScoreO();
+     } else if (b1 === fro && b2 === fro && b3 === fro ||
+	   	  b1 === fro && b4 === fro && b7 === fro ||
+	   	  b1 === fro && b5 === fro && b9 === fro ||
+	   	  b1 === fro && b4 === fro && b7 === fro ||
+	   	  b4 === fro && b5 === fro && b6 === fro ||
+	   	  b7 === fro && b8 === fro && b9 === fro ||
+	   	  b7 === fro && b5 === fro && b3 === fro ||
+	   	  b2 === fro && b5 === fro && b8 === fro ||
+	   	  b3 === fro && b6 === fro && b9 === fro ) {
+      	results.innerHTML = "YOU LOSE!";
+      	new Audio('youmad.mp3').play();
+      	addScoreO();
      } 
-      console.log(board);
+      
   }
 
 // Clear the game board and start over.

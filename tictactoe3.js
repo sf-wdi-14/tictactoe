@@ -9,111 +9,48 @@ window.onload = function() {
   var boxSeven = document.querySelector("#b7");
   var boxEight = document.querySelector("#b8");
   var boxNine = document.querySelector("#b9");
-  var square;
+  
 
   var clearButton = document.getElementById('clear');
-  var allBoxes = document.querySelectorAll(".box");
+  var allBoxes = document.querySelectorAll(".box"); 
+  var results = document.querySelector(".result");
+  var fro = "<img src=\"tictacfro2.png\">";
+  
+  var youMad = new Audio();
+  youMad.src = "youmad.mp3";
+  youMad.load();
 
+  var applause = new Audio();
+  applause.src = "applause.mp3";
+  applause.load();
+
+  boardValues = [1, 4, 9, 16, 25, 36, 49, 64, 81];
+  solutions = [14,72,194,78,66,88,126,102,78];
+  
   // Create an event when a box is clicked
 
-  boxOne.onclick = function() {
-    if (boxOne.innerHTML === "X") {
-      boxOne.innerHTML = "O";
-  	  this.style.color = "#99ce05";
-    } else {
-      boxOne.innerHTML = "X";
-      this.style.color = "#48dfff";
-    }
-  }
-  
-  boxTwo.onclick = function() {
-	  if (boxTwo.innerHTML === "X") {
-        boxTwo.innerHTML = "O";
-        this.style.color = "#99ce05";
-      } else {
-        boxTwo.innerHTML = "X";
-        this.style.color = "#48dfff";
+  for (var b = 0; b < allBoxes.length; b++) {
+    allBoxes[b].onclick = function() {
+      var current = {
+        xx: "0",
+        o: 0,
+        fro: 0
+      };
+      
+      this.innerHTML = "X";
+      this.style.color = "#fe7bff";
+      
+      if (this.innerHTML === "X") {
+        console.log(boardValues[b]);
+        current.xx += boardValues[b];
+      } else if (this.innerHTML === "O") {
+        current.o += boardValues[b];
+      } else if (this.innerHTML === fro) {
+        current.fro += boardValues[b];
       }
-  }
-  boxThree.onclick = function() {
-  	if (boxThree.innerHTML === "X") {
-  		boxThree.innerHTML = "O";
-      this.style.color = "#99ce05";
-  	} else {
-  		boxThree.innerHTML = "X";
-      this.style.color = "#48dfff";
-  	}
-  }
-  boxFour.onclick = function() {
-  	if (boxFour.innerHTML === "X") {
-  		boxFour.innerHTML = "O";
-      this.style.color = "#99ce05";
-  	} else {
-  		boxFour.innerHTML = "X";
-      this.style.color = "#48dfff";
-  	}
-  }
-  boxFive.onclick = function() {
-  	if (boxFive.innerHTML === "X") {
-  		boxFive.innerHTML = "O";
-      this.style.color = "#99ce05";
-  	} else {
-  		boxFive.innerHTML = "X";
-      this.style.color = "#48dfff";
-  	}
-  }
-  boxSix.onclick = function() {
-  	if (boxSix.innerHTML === "X") {
-  		boxSix.innerHTML = "O";
-      this.style.color = "#99ce05";
-  	} else {
-  		boxSix.innerHTML = "X";
-      this.style.color = "#48dfff";
-  	}
-  }
-  boxSeven.onclick = function() {
-  	if (boxSeven.innerHTML === "X") {
-  		boxSeven.innerHTML = "O";
-      this.style.color = "#99ce05";
-  	} else {
-  		boxSeven.innerHTML = "X";
-      this.style.color = "#48dfff";
-  	}
-  }
-  boxEight.onclick = function() {
-  	if (boxEight.innerHTML === "X") {
-  		boxEight.innerHTML = "O";
-      this.style.color = "#99ce05";
-  	} else {
-  		boxEight.innerHTML = "X";
-      this.style.color = "#48dfff";
-  	}
-  }
-  boxNine.onclick = function() {
-  	if (boxNine.innerHTML === "X") {
-  		boxNine.innerHTML = "O";
-      this.style.color = "#99ce05";
-  	} else {
-  		boxNine.innerHTML = "X";
-      this.style.color = "#48dfff";
-  	}
-  }
+      console.log(current);
 
-  // What happens when someone wins?
-
-  var winParty;
-  boardValues = [
-      1, 4, 9,
-      16, 25, 36,
-      49, 64, 81
-      ];
-
-  solutions = [14,72,194,78,66,88,126,102,78];
-
-
-  // Check the current innerHTML of the grid for a win.
-
-  var b1 = boxOne.innerHTML,
+  		var b1 = boxOne.innerHTML,
         b2 = boxTwo.innerHTML,
         b3 = boxThree.innerHTML,
         b4 = boxFour.innerHTML,
@@ -123,83 +60,77 @@ window.onload = function() {
         b8 = boxEight.innerHTML,
         b9 = boxNine.innerHTML;
   
-    var board = [
-      b1, b2, b3,
-      b4, b5, b6,
-      b7, b8, b9
-      ];
+      var board = [
+        b1, b2, b3,
+        b4, b5, b6,
+        b7, b8, b9
+        ];
+  // Keep score	
+      var scoreX = 0, 
+      		scoreO = 0;
+      function addScoreX() {
+      	scoreX += 1000;
+      	document.getElementById("scorex").innerHTML = scoreX;
 
-  if (b1 === "X" && b2 === "X" && b3 === "X" || 
-      b1 === "O" && b2 === "O" && b3 === "O" ||
-      b1 === "X" && b4 === "X" && b7 === "X" || 
-      b1 === "O" && b4 === "O" && b7 === "O" ||
-      b1 === "X" && b5 === "X" && b9 === "X" ||
-      b1 === "O" && b5 === "O" && b9 === "O" ||
-      b1 === "X" && b4 === "X" && b7 === "X" ||
-      b1 === "O" && b4 === "O" && b7 === "O" ||
-      b4 === "X" && b5 === "X" && b6 === "X" ||
-      b4 === "O" && b5 === "O" && b6 === "O" ||
-      b7 === "X" && b8 === "X" && b9 === "X" ||
-      b7 === "O" && b8 === "O" && b9 === "O" ||
-      b7 === "X" && b5 === "X" && b3 === "X" ||
-      b7 === "O" && b5 === "O" && b3 === "O" ||
-      b2 === "X" && b5 === "X" && b8 === "X" ||
-      b2 === "O" && b5 === "O" && b8 === "O" ||
-      b3 === "X" && b6 === "X" && b9 === "X" ||
-      b3 === "O" && b6 === "O" && b9 === "O" ) {
-      console.log("We have a winner!");
-    }
+      	scoreO -= 500;
+      	document.getElementById("scoreo").innerHTML = scoreO;
+      }
 
-    console.log(board);
-  /*
-  var endButton = document.getElementById('endturn');  
-  endButton.onclick = function() {
-    var b1 = boxOne.innerHTML,
-    	  b2 = boxTwo.innerHTML,
-    	  b3 = boxThree.innerHTML,
-    	  b4 = boxFour.innerHTML,
-    	  b5 = boxFive.innerHTML,
-    	  b6 = boxSix.innerHTML,
-    	  b7 = boxSeven.innerHTML,
-    	  b8 = boxEight.innerHTML,
-    	  b9 = boxNine.innerHTML;
-  
-    var board = [
-    	b1, b2, b3,
-    	b4, b5, b6,
-    	b7, b8, b9
-    	];
+      function addScoreO() {
+      	scoreO += 1000;
+      	document.getElementById("scorex").innerHTML = scoreX;
 
+      	scoreX -= 500;
+      	document.getElementById("scoreo").innerHTML = scoreO;
+      }
 
-   
-    if (b1 === "X" && b2 === "X" && b3 === "X" || 
-    	b1 === "O" && b2 === "O" && b3 === "O" ||
-    	b1 === "X" && b4 === "X" && b7 === "X" || 
-    	b1 === "O" && b4 === "O" && b7 === "O" ||
-    	b1 === "X" && b5 === "X" && b9 === "X" ||
-		  b1 === "O" && b5 === "O" && b9 === "O" ||
-		  b1 === "X" && b4 === "X" && b7 === "X" ||
-		  b1 === "O" && b4 === "O" && b7 === "O" ||
-		  b4 === "X" && b5 === "X" && b6 === "X" ||
-		  b4 === "O" && b5 === "O" && b6 === "O" ||
-		  b7 === "X" && b8 === "X" && b9 === "X" ||
-		  b7 === "O" && b8 === "O" && b9 === "O" ||
-		  b7 === "X" && b5 === "X" && b3 === "X" ||
-		  b7 === "O" && b5 === "O" && b3 === "O" ||
-		  b2 === "X" && b5 === "X" && b8 === "X" ||
-		  b2 === "O" && b5 === "O" && b8 === "O" ||
-		  b3 === "X" && b6 === "X" && b9 === "X" ||
-		  b3 === "O" && b6 === "O" && b9 === "O" ) {
-    	console.log("We have a winner!");
-    }
+  // Check for win conditions
+      if (b1 === "X" && b2 === "X" && b3 === "X" || 
+        b1 === "X" && b4 === "X" && b7 === "X" || 
+        b1 === "X" && b5 === "X" && b9 === "X" ||
+        b1 === "X" && b4 === "X" && b7 === "X" ||
+        b4 === "X" && b5 === "X" && b6 === "X" ||
+        b7 === "X" && b8 === "X" && b9 === "X" ||
+        b7 === "X" && b5 === "X" && b3 === "X" ||
+        b2 === "X" && b5 === "X" && b8 === "X" ||
+        b3 === "X" && b6 === "X" && b9 === "X" ) {
+        results.innerHTML = "WE HAVE A WINNER!";
+      	new Audio('applause.mp3').play();
+        addScoreX();
 
-    console.log(board);
+      } else if (b1 === "O" && b2 === "O" && b3 === "O" ||
+	   	  b1 === "O" && b4 === "O" && b7 === "O" ||
+	   	  b1 === "O" && b5 === "O" && b9 === "O" ||
+	   	  b1 === "O" && b4 === "O" && b7 === "O" ||
+	   	  b4 === "O" && b5 === "O" && b6 === "O" ||
+	   	  b7 === "O" && b8 === "O" && b9 === "O" ||
+	   	  b7 === "O" && b5 === "O" && b3 === "O" ||
+	   	  b2 === "O" && b5 === "O" && b8 === "O" ||
+	   	  b3 === "O" && b6 === "O" && b9 === "O" ) {
+      	results.innerHTML = "YOU LOSE!";
+      	addScoreO();
+     } else if (b1 === fro && b2 === fro && b3 === fro ||
+	   	  b1 === fro && b4 === fro && b7 === fro ||
+	   	  b1 === fro && b5 === fro && b9 === fro ||
+	   	  b1 === fro && b4 === fro && b7 === fro ||
+	   	  b4 === fro && b5 === fro && b6 === fro ||
+	   	  b7 === fro && b8 === fro && b9 === fro ||
+	   	  b7 === fro && b5 === fro && b3 === fro ||
+	   	  b2 === fro && b5 === fro && b8 === fro ||
+	   	  b3 === fro && b6 === fro && b9 === fro ) {
+      	results.innerHTML = "YOU LOSE!";
+      	new Audio('youmad.mp3').play();
+      	addScoreO();
+     } 
+
+      
   }
-  */
 
+// Clear the game board and start over.
   clearButton.onclick = function() {
   	for (var i = 0; i < allBoxes.length; i++) {
   	  allBoxes[i].innerHTML = "";
+  	  results.innerHTML = "";
   	}
   }
-}
+} }
