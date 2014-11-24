@@ -102,7 +102,13 @@ window.onload = function() {
   // What happens when someone wins?
 
   var winParty;
+  boardValues = [
+      1, 4, 9,
+      16, 25, 36,
+      49, 64, 81
+      ];
 
+  solutions = [14,72,194,78,66,88,126,102,78];
 
 
   // Check the current innerHTML of the grid for a win.

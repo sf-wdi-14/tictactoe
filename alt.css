@@ -34,24 +34,23 @@ h3 {
 .board {
 	position: relative;
 	margin: auto;
+	background: #333;
+	width: 310px;
 }
 .row {
-	width: 300px;
-	height: 90px;
-	margin: auto;
+	
 }
 
 .box {
-	float: left;
 	background: #666;
 	width: 90px;
 	height: 90px;
-	margin: 3px;
 	font-size: 80px;
 	font-family: Verdana;
 	font-weight: bold;
 	text-align: center;
 	color: black;
+	border: 5px solid #333;
 }
 
 .dash {

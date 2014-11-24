@@ -12,6 +12,7 @@ window.onload = function() {
 
   var clearButton = document.getElementById('clear');
   var allBoxes = document.querySelectorAll(".box");
+  var results = document.querySelector(".result");
 
   // Create an event when a box is clicked
 
@@ -145,6 +146,7 @@ window.onload = function() {
 		  b3 === "X" && b6 === "X" && b9 === "X" ||
 		  b3 === "O" && b6 === "O" && b9 === "O" ) {
     	console.log("We have a winner!");
+      results.innerHTML ="WE HAVE A WINNER!";
     }
 
     console.log(board);
@@ -153,6 +155,7 @@ window.onload = function() {
   clearButton.onclick = function() {
   	for (var i = 0; i < allBoxes.length; i++) {
   	  allBoxes[i].innerHTML = "";
+      results.innerHTML = "";
   	}
   }
 }
