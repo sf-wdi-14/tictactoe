@@ -1,6 +1,8 @@
 body {
 	background: linear-gradient(#333333,#111111);
 	background: -webkit-linear-gradient(#333333,#111111);
+	background: -moz-linear-gradient(#333333,#111111);
+	background: -o-linear-gradient(#333333,#111111);
 	color: #ccc;
 	margin: auto;
 }
@@ -17,6 +19,8 @@ h1 {
 	text-shadow: 5px 5px 8px #000;
 	background: linear-gradient(#666,#333);
 	background: -webkit-linear-gradient(#666,#333);
+	background: -moz-linear-gradient(#666,#333);
+	background: -o-linear-gradient(#666,#333);
 	border-bottom: 5px solid #000;
 	box-shadow: 5px 5px 5px #000;
 	margin-bottom: 10px;
@@ -81,6 +85,9 @@ h3 {
 
 button {
 	background: linear-gradient(#ffcc02,#ff9c00);
+	background: -webkit-linear-gradient(#ffcc02,#ff9c00);
+	background: -moz-gradient(#ffcc02,#ff9c00);
+	background: -o-linear-gradient(#ffcc02,#ff9c00);
 	border: 2px solid #666;
 	color: white;
 	font-size: 30px;
@@ -140,4 +147,12 @@ button {
 .result {
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+.X {
+	color: #fe7bff;
+}
+
+.Y {
+	color: #ffdb00;
 }
