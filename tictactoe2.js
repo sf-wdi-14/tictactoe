@@ -9,7 +9,7 @@ window.onload = function() {
   var boxSeven = document.querySelector("#b7");
   var boxEight = document.querySelector("#b8");
   var boxNine = document.querySelector("#b9");
-  var square;
+  var gameboard = [];
 
   var clearButton = document.getElementById('clear');
   var allBoxes = document.querySelectorAll(".box"); 
@@ -28,14 +28,13 @@ window.onload = function() {
 
   for (var b = 0; b < allBoxes.length; b++) {
   	allBoxes[b].onclick = function() {
-
   		this.innerHTML = "X";
   		this.style.color = "#fe7bff";
 
   // Add some competition
   		var ai = Math.floor((Math.random() * allBoxes.length) );
   		console.log(ai);							// Pattern of errors at certain indices?
-  		if (allBoxes[ai] !== "X") {
+  		if (allBoxes[ai] === "X") {
   		  allBoxes[ai].innerHTML = "<img src=\"tictacfro2.png\">";
   		  allBoxes[ai].style.color = "#ffdb00";
   		} else {
@@ -124,4 +123,6 @@ window.onload = function() {
   	  results.innerHTML = "";
   	}
   }
-} }
+
+} 
+}
