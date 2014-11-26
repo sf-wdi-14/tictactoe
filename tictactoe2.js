@@ -11,35 +11,45 @@ window.onload = function() {
   var boxNine = document.querySelector("#b9");
   var gameboard = [];
 
-  var clearButton = document.getElementById('clear');
-  var allBoxes = document.querySelectorAll(".box"); 
+  var clearButton = document.getElementById('clear'); 
   var results = document.querySelector(".result");
   var fro = "<img src=\"tictacfro2.png\">";
   
   var youMad = new Audio();
-  youMad.src = "youmad.mp3";
+  youMad.src = "media/youmad.mp3";
   youMad.load();
 
   var applause = new Audio();
-  applause.src = "applause.mp3";
+  applause.src = "media/applause.mp3";
   applause.load();
+  
+var allBoxes = document.querySelectorAll(".box");
 
-  // Create an event when a box is clicked
+var opponent = function() {
+  var o = Math.floor((Math.random() * allBoxes.length) );
+  var assignment =  allBoxes[o].innerHTML;
+  console.log("Picked a number", o);
+
+  if (!allBoxes[o].innerHTML) {
+    allBoxes[o].innerHTML = "O"; // If it's empty, put an O
+    allBoxes[o].style.color = "#ffdb00";
+  } else if (allBoxes[o].textContent === "X") {
+    // If there's an X in it, put a fro.
+    console.log("You have it.");
+    allBoxes[o].innerHTML = "<img src=\"media/tictacfro2.png\">"; 
+  } 
+}
+
+// Game loop
 
   for (var b = 0; b < allBoxes.length; b++) {
   	allBoxes[b].onclick = function() {
   		this.innerHTML = "X";
   		this.style.color = "#fe7bff";
+      opponent();
+      
 
   // Add some competition
-  		var ai = Math.floor((Math.random() * allBoxes.length) );
-  		console.log(ai);							// Pattern of errors at certain indices?
-  		if (allBoxes[ai] === "X") {
-  		  allBoxes[ai].innerHTML = "<img src=\"tictacfro2.png\">";
-  		  allBoxes[ai].style.color = "#ffdb00";
-  		} else {
-  			allBoxes[ai].innerHTML = "O"; // When is "else" executed?
-  		}
 
   		var b1 = boxOne.innerHTML,
         b2 = boxTwo.innerHTML,
