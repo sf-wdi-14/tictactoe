@@ -13,7 +13,7 @@ window.onload = function() {
 
   var clearButton = document.getElementById('clear'); 
   var results = document.querySelector(".result");
-  var fro = "<img src=\"tictacfro2.png\">";
+  var fro = "<img src=\"media/tictacfro2.png\">";
   
   var youMad = new Audio();
   youMad.src = "media/youmad.mp3";
@@ -27,17 +27,16 @@ var allBoxes = document.querySelectorAll(".box");
 
 var opponent = function() {
   var o = Math.floor((Math.random() * allBoxes.length) );
-  var assignment =  allBoxes[o].innerHTML;
-  console.log("Picked a number", o);
+  console.log("Rolled a: ", o);
+  setTimeout(function() {
 
-  if (!allBoxes[o].innerHTML) {
-    allBoxes[o].innerHTML = "O"; // If it's empty, put an O
-    allBoxes[o].style.color = "#ffdb00";
-  } else if (allBoxes[o].textContent === "X") {
-    // If there's an X in it, put a fro.
-    console.log("You have it.");
-    allBoxes[o].innerHTML = "<img src=\"media/tictacfro2.png\">"; 
-  } 
+    if (!allBoxes[o].innerHTML) {
+      allBoxes[o].innerHTML = "<img src=\"media/tictacfro2.png\">"; 
+      allBoxes[o].style.color = "#ffdb00";
+    } else {
+      opponent();
+    }
+  }, 500);
 }
 
 // Game loop
@@ -49,40 +48,33 @@ var opponent = function() {
       opponent();
       
 
-  // Add some competition
+  // Win conditions
 
   		var b1 = boxOne.innerHTML,
-        b2 = boxTwo.innerHTML,
-        b3 = boxThree.innerHTML,
-        b4 = boxFour.innerHTML,
-        b5 = boxFive.innerHTML,
-        b6 = boxSix.innerHTML,
-        b7 = boxSeven.innerHTML,
-        b8 = boxEight.innerHTML,
-        b9 = boxNine.innerHTML;
-  
+        b2   = boxTwo.innerHTML,
+        b3   = boxThree.innerHTML,
+        b4   = boxFour.innerHTML,
+        b5   = boxFive.innerHTML,
+        b6   = boxSix.innerHTML,
+        b7   = boxSeven.innerHTML,
+        b8   = boxEight.innerHTML,
+        b9   = boxNine.innerHTML;
+     
       var board = [
         b1, b2, b3,
         b4, b5, b6,
         b7, b8, b9
         ];
   // Keep score	
-      var scoreX = 0, 
-      		scoreO = 0;
-      function addScoreX() {
-      	scoreX += 1000;
-      	document.getElementById("scorex").innerHTML = scoreX;
+      var scoreX   = 0, 
+      		scoreO   = 0,
+          scoreFro = 0;
 
-      	scoreO -= 500;
-      	document.getElementById("scoreo").innerHTML = scoreO;
-      }
-
-      function addScoreO() {
-      	scoreO += 1000;
-      	document.getElementById("scorex").innerHTML = scoreX;
-
-      	scoreX -= 500;
-      	document.getElementById("scoreo").innerHTML = scoreO;
+      function addScore(player) {
+      	// scoreX = document.getElementById("scorex").innerHTML;
+        player += 100;
+        $('#scorex').text(scoreX);
+        $('#scoreo').text(scoreO);
       }
 
   // Check for win conditions
@@ -95,9 +87,11 @@ var opponent = function() {
         b7 === "X" && b5 === "X" && b3 === "X" ||
         b2 === "X" && b5 === "X" && b8 === "X" ||
         b3 === "X" && b6 === "X" && b9 === "X" ) {
+        
         results.innerHTML = "WE HAVE A WINNER!";
-      	new Audio('applause.mp3').play();
-        addScoreX();
+      	new Audio('media/applause.mp3').play();
+        addScore(scoreX);
+        return;
 
       } else if (b1 === "O" && b2 === "O" && b3 === "O" ||
 	   	  b1 === "O" && b4 === "O" && b7 === "O" ||
@@ -109,7 +103,7 @@ var opponent = function() {
 	   	  b2 === "O" && b5 === "O" && b8 === "O" ||
 	   	  b3 === "O" && b6 === "O" && b9 === "O" ) {
       	results.innerHTML = "YOU LOSE!";
-      	addScoreO();
+      	addScore(scoreO);
      } else if (b1 === fro && b2 === fro && b3 === fro ||
 	   	  b1 === fro && b4 === fro && b7 === fro ||
 	   	  b1 === fro && b5 === fro && b9 === fro ||
@@ -120,8 +114,8 @@ var opponent = function() {
 	   	  b2 === fro && b5 === fro && b8 === fro ||
 	   	  b3 === fro && b6 === fro && b9 === fro ) {
       	results.innerHTML = "YOU LOSE!";
-      	new Audio('youmad.mp3').play();
-      	addScoreO();
+      	new Audio('media/youmad.mp3').play();
+      	addScore(scoreFro);
      } 
       
   }
